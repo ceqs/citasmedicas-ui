@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Cita registrada</title>
+    </head>
+    <body>
+        <h2><b>Felicidades</b>: Su cita ha sido registrada con número de ticket : <b><%=request.getAttribute("id")%></b></h2>
+        <br>
+        <br>
+        <div>Para el <%=request.getAttribute("fecha")%> en el horario de : <%=request.getAttribute("horario")%>.
+            Con el medico: <b><%=request.getAttribute("medico")%></b>
+            <br><br>
+            <b>IMPORTANTE: </b>No olvide llegar 30 minutos antes de su cita.
+            <br><br>
+            Esta informaci&oacute;n ha sido tambi&eacute;n enviada a su correo electrónico registrado.
+        </div>
+    </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Historial</title>
+	<link href="../static/css/all.min.css" rel="stylesheet" th:href="@{/css/all.min.css}">
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link href="../static/css/datatable/dataTables.bootstrap5.min.css" rel="stylesheet" th:href="@{/css/datatable/dataTables.bootstrap5.min.css}">
+	<link href="../static/css/datatable/fixedColumns.bootstrap5.min.css" rel="stylesheet" th:href="@{/css/datatable/fixedColumns.bootstrap5.min.css}">
+
+	<script src="../static/js/jquery.min.js" crossorigin="anonymous" th:src="@{/js/jquery.min.js}"></script>
+	<script src="../static/js/bootstrap.min.js" crossorigin="anonymous" th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../static/js/bootstrap.bundle.min.js" crossorigin="anonymous" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+	<script src="../static/js/datatable/datatables.min.js" crossorigin="anonymous" th:src="@{/js/datatable/datatables.min.js}"></script>
+	<script src="../static/js/datatable/jquery.dataTables.min.js" crossorigin="anonymous" th:src="@{/js/datatable/jquery.dataTables.min.js}"></script>
+	<script src="../static/js/datatable/dataTables.bootstrap5.min.js" crossorigin="anonymous" th:src="@{/js/datatable/dataTables.bootstrap5.min.js}"></script>
+	<script src="../static/js/datatable/dataTables.responsive.min.js" crossorigin="anonymous" th:src="@{/js/datatable/dataTables.responsive.min.js}"></script>
+
+	<script src="../static/js/datatable/dataTables.buttons.min.js" crossorigin="anonymous" th:src="@{/js/datatable/dataTables.buttons.min.js}"></script>
+	<script src="../static/js/datatable/jszip.min.js" crossorigin="anonymous" th:src="@{/js/datatable/jszip.min.js}"></script>
+	<script src="../static/js/datatable/pdfmake.min.js" crossorigin="anonymous" th:src="@{/js/datatable/pdfmake.min.js}"></script>
+	<script src="../static/js/datatable/vfs_fonts.js" crossorigin="anonymous" th:src="@{/js/datatable/vfs_fonts.js}"></script>
+	<script src="../static/js/datatable/buttons.html5.min.js" crossorigin="anonymous" th:src="@{/js/datatable/buttons.html5.min.js}"></script>
+	<script src="../static/js/datatable/buttons.print.min.js" crossorigin="anonymous" th:src="@{/js/datatable/buttons.print.min.js}"></script>
+	<script src="../static/js/historial.js" crossorigin="anonymous" th:src="@{/js/historial.js}"></script>
+  </head>
+  <body>
+	<h4>Reporte - Historial de Citas</h4>
+	<section id="main-content">
+	  <div  class="container" style="margin-top: 15px;">
+		<div class="row">
+		  <div class="col-lg-12">
+		  </div>
+		</div>
+		<div class="row">
+		  <form class="form-group" name="form_historial" id="form_historial" style="width: 100%;">
+			<div class="form-group row rowT">
+			  <div class="col-lg-4 row">
+				<label class="col-sm-4 control-label">Fecha Inicio</label>
+				<div class="col-sm-8">
+				  <input type="date" min="1920-01-01" max="2050-12-31" class="form-control" name="txtfechaI" id="txtfechaI">
+				</div>
+			  </div>
+			  <div class="col-lg-6 row">
+				<label class="col-sm-3 control-label">Especialidad</label>
+				<div class="col-sm-9">
+				  <select class="form-control form-select" name="cboEspecial" id="cboEspecial">
+					<option value="0">(TODOS)</option>
+					<option th:each="especialidad : ${especialidades}" th:value="${especialidad.id}" th:text="${especialidad.descripcion}"></option>
+				  </select>
+				</div>
+			  </div>
+			  <div class="col-lg-2 row">
+				<button type="button" class="btn btn-primary" id="btnBuscar">Buscar</button>
+				<input type="hidden" name="opc", id="opc" value="2" >
+			  </div>
+			</div>
+			<div class="form-group row rowT">
+			  <div class="col-lg-4 row">
+				<label class="col-sm-4 control-label">Fecha Fin</label>
+				<div class="col-sm-8">
+				  <input type="date" min="1920-01-01" max="2050-12-31" class="form-control" data-live-search="true" name="txtfechaF" id="txtfechaF">
+				</div>
+			  </div>
+			  <div class="col-lg-6 row">
+				<label class="col-sm-3 control-label">Medico</label>
+				<div class="col-sm-9">
+				  <select class="form-control form-select" name="cboMedico" id="cboMedico">
+					<option value="0" selected="">(TODOS)</option>
+				  </select>
+				</div>
+			  </div>
+			</div>
+		  </form>
+		</div>
+		<div class="col-sm-12" style="margin-top: 40px;">
+		  <section class="panel">
+			<table id="tablaMaestra" class="table table-condensed dataTable">
+			  <thead>
+			  <tr>
+				<th>Fecha</th>
+				<th>Horario</th>
+				<th>Medico</th>
+				<th>Especialidad</th>
+				<th>Paciente</th>
+				<th>Estado</th>
+			  </tr>
+			  </thead>
+			  <tbody id="tblMaestraBody">
+			  </tbody>
+			</table>
+		  </section>
+		</div>
+	  </div>
+	</section>
+  </body>
+</html>
